@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deutsch A1 — 4-Week Program</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #1c1c1c;
+  --white: #fffdf5;
+  --cream: #fffbec;
+  --cream-dark: #f5e9b8;
+  --ink: #1c1c1c;
+  --muted: #776655;
+  --gold: #FFCE00;
+  --gold-deep: #c9a200;
+  --gold-light: #fff8cc;
+  --red: #cc0000;
+  --red-light: #fde8e8;
+  --border: rgba(26,26,26,0.13);
+  --radius: 4px;
+  --radius-lg: 8px;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); line-height: 1.6; font-size: 15px; font-weight: 300; }
+
+/* ── Flag stripe ── */
+.flag-stripe { display: flex; height: 5px; width: 100%; }
+.flag-stripe div:nth-child(1) { flex: 1; background: #2a2a2a; }
+.flag-stripe div:nth-child(2) { flex: 1; background: #cc0000; }
+.flag-stripe div:nth-child(3) { flex: 1; background: #FFCE00; }
+
+/* ── Header ── */
+.site-header {
+  background: var(--black);
+  padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.logo {
+  font-family: 'DM Mono', monospace; font-size: 13px;
+  letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase;
+  cursor: pointer;
+}
+.site-header nav { display: flex; gap: 0; }
+.nav-btn {
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.5); font-size: 13px; font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.04em; padding: 0 1.2rem; height: 56px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-btn:hover { color: var(--white); }
+.nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ── Pages ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ══════════════════════════════
+   HOME PAGE
+══════════════════════════════ */
+
+/* Hero image area */
+.home-hero {
+  position: relative; height: 520px; overflow: hidden;
+  background: var(--black);
+  display: flex; align-items: flex-end;
+  border-bottom: 4px solid var(--gold);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 40%, rgba(204,0,0,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(255,206,0,0.12) 0%, transparent 50%),
+    var(--black);
+}
+/* Brandenburg Gate decorative SVG */
+.hero-gate {
+  position: absolute; right: 6%; bottom: 0;
+  opacity: 0.13; width: 340px;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 2.5rem 3.5rem; max-width: 680px;
+}
+.hero-kicker {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.2rem;
+}
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 6vw, 68px); font-weight: 600;
+  line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--white); margin-bottom: 1.25rem;
+}
+.hero-content h1 em { color: var(--gold); font-style: normal; }
+.hero-hook {
+  font-size: 17px; color: rgba(255,255,255,0.65);
+  line-height: 1.7; font-weight: 300; max-width: 520px;
+  margin-bottom: 2rem;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold); color: var(--black);
+  font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 12px 24px;
+  border-radius: var(--radius); border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.hero-cta:hover { background: #ffe033; transform: translateY(-1px); }
+
+/* Home stats bar */
+.stats-bar {
+  background: var(--black); border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  padding: 1.5rem 2rem; border-right: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-val {
+  font-family: 'Playfair Display', serif; font-size: 32px;
+  font-weight: 600; color: var(--gold); display: block;
+}
+.stat-lbl { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; margin-top: 2px; }
+
+/* Home overview cards */
+.home-body { max-width: 1100px; margin: 0 auto; padding: 4rem 2.5rem; }
+.home-intro {
+  text-align: center; max-width: 600px; margin: 0 auto 3.5rem;
+}
+.home-intro h2 {
+  font-family: 'Playfair Display', serif; font-size: 30px;
+  font-weight: 600; margin-bottom: 0.75rem;
+}
+.home-intro p { font-size: 15px; color: var(--muted); line-height: 1.75; }
+
+.overview-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.overview-card {
+  background: var(--white); padding: 2rem 1.5rem;
+  cursor: pointer; transition: background 0.15s;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.overview-card:hover { background: var(--gold-light); }
+.ov-icon { font-size: 26px; }
+.ov-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; }
+.ov-sub { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.ov-link { font-size: 12px; font-weight: 500; color: var(--red); margin-top: auto; letter-spacing: 0.04em; }
+
+/* German quote */
+.home-quote {
+  margin: 4rem auto 0; max-width: 600px; text-align: center;
+  padding-top: 3rem; border-top: 1px solid var(--border);
+}
+.home-quote blockquote {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 20px; color: var(--ink); line-height: 1.6; margin-bottom: 0.5rem;
+}
+.home-quote cite { font-size: 13px; color: var(--muted); font-style: normal; }
+
+/* ══════════════════════════════
+   INNER PAGES (shared)
+══════════════════════════════ */
+.page-hero {
+  background: var(--black); color: var(--white);
+  padding: 3.5rem 2.5rem;
+  border-bottom: 3px solid var(--gold);
+}
+.page-hero-inner { max-width: 1100px; margin: 0 auto; }
+.page-kicker {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.6rem;
+}
+.page-hero h2 {
+  font-family: 'Playfair Display', serif; font-size: 38px;
+  font-weight: 600; line-height: 1.1;
+}
+.page-hero p { font-size: 15px; color: rgba(255,255,255,0.55); margin-top: 0.75rem; max-width: 560px; }
+.page-body { max-width: 1100px; margin: 0 auto; padding: 3.5rem 2.5rem; }
+
+/* ── Shared components ── */
+.section-label {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-deep); margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif; font-size: 26px;
+  font-weight: 600; margin-bottom: 2rem; letter-spacing: -0.01em;
+}
+.block + .block { margin-top: 3.5rem; padding-top: 3.5rem; border-top: 1px solid var(--border); }
+
+/* ── Week schedule ── */
+.weeks-list { display: flex; flex-direction: column; }
+.week-row {
+  display: grid; grid-template-columns: 100px 1fr 1fr;
+  border: 1px solid var(--border); border-bottom: none; overflow: hidden;
+}
+.week-row:first-child { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.week-row:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+.week-meta {
+  background: var(--black); color: var(--white);
+  padding: 1.5rem 1.25rem; display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.week-num-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+.week-num-big { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 600; line-height: 1; color: var(--white); }
+.week-theme-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 6px; }
+.session-cell {
+  padding: 1.25rem 1.5rem; background: var(--white);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.session-cell + .session-cell { border-left: 1px solid var(--border); }
+.week-row:nth-child(even) .session-cell { background: var(--cream); }
+.session-num { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.session-title { font-size: 14px; font-weight: 500; line-height: 1.4; }
+.tag-row { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 2px; }
+.tag { font-size: 10px; padding: 2px 8px; border-radius: 20px; }
+.t-vocab  { background: #fff8cc; color: #7a6000; }
+.t-gram   { background: #fde8e8; color: #9a0000; }
+.t-speak  { background: #1c1c1c; color: #FFCE00; }
+.t-listen { background: #f5e9b8; color: #5a4400; }
+.t-culture{ background: #cc0000; color: #fff8cc; }
+.t-review { background: #e8e8e8; color: #555; }
+.legend { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ── Goals ── */
+.goals-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.goal-card { background: var(--white); padding: 2rem; }
+.goal-card:nth-child(even) { background: var(--cream); }
+.goal-icon { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; background: #fde8e8; border-radius: var(--radius); margin-bottom: 1rem; }
+.goal-card h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.75rem; }
+.goal-card ul { list-style: none; padding: 0; }
+.goal-card ul li { font-size: 13px; color: var(--muted); padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.goal-card ul li::before { content: '—'; color: var(--gold-deep); font-size: 11px; flex-shrink: 0; }
+.goal-card ul li:last-child { border-bottom: none; }
+
+/* ── Assessment ── */
+.assess-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5rem; }
+.assess-card { background: var(--white); padding: 1.75rem; }
+.assess-card:nth-child(2) { background: var(--cream); }
+.assess-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 6px; }
+.assess-when { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+.assess-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ── Resources ── */
+.resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.resource-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  display: flex; flex-direction: column; gap: 6px;
+  text-decoration: none; color: inherit; cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.resource-card:hover { border-color: var(--red); transform: translateY(-2px); }
+.resource-type { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.resource-name { font-size: 16px; font-weight: 500; }
+.resource-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.resource-cta { margin-top: 8px; font-size: 12px; font-weight: 500; color: var(--red); letter-spacing: 0.04em; }
+
+/* ── Footer ── */
+footer {
+  background: var(--black); color: rgba(255,255,255,0.35);
+  text-align: center; padding: 2rem;
+  font-size: 12px; font-family: 'DM Mono', monospace; letter-spacing: 0.06em;
+  border-top: 3px solid var(--gold);
+}
+footer .quote { margin-top: 0.5rem; font-size: 13px; color: rgba(255,255,255,0.5); font-family: 'Playfair Display', serif; font-style: italic; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .overview-grid { grid-template-columns: 1fr 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .week-row { grid-template-columns: 72px 1fr; }
+  .week-row .session-cell:last-child { grid-column: 2; border-left: none; border-top: 1px solid var(--border); }
+  .goals-grid, .resources-grid, .assess-row { grid-template-columns: 1fr; }
+  .site-header { padding: 0 1.25rem; }
+  .home-body, .page-body { padding: 2rem 1.25rem; }
+  .hero-content { padding: 0 1.25rem 2.5rem; }
+  .hero-gate { display: none; }
+  .page-hero { padding: 2.5rem 1.25rem; }
+  .nav-btn { padding: 0 0.75rem; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="flag-stripe"><div></div><div></div><div></div></div>
+
+<header class="site-header">
+  <div class="logo" onclick="showPage('home')">Deutsch A1</div>
+  <nav>
+    <button class="nav-btn" onclick="showPage('home')">Home</button>
+    <button class="nav-btn" onclick="showPage('schedule')">Schedule</button>
+    <button class="nav-btn" onclick="showPage('goals')">Goals</button>
+    <button class="nav-btn" onclick="showPage('assessment')">Assessment</button>
+    <button class="nav-btn" onclick="showPage('resources')">Resources</button>
+  </nav>
+</header>
+
+<!-- ════════════════════════════ HOME ════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <div class="home-hero">
+    <div class="hero-bg"></div>
+    <!-- Brandenburg Gate silhouette -->
+    <svg class="hero-gate" viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="178" width="360" height="6" fill="#FFCE00"/>
+      <rect x="18" y="80" width="18" height="100" fill="#FFCE00"/>
+      <rect x="54" y="80" width="18" height="100" fill="#FFCE00"/>
+      <rect x="90" y="80" width="18" height="100" fill="#FFCE00"/>
+      <rect x="126" y="80" width="18" height="100" fill="#FFCE00"/>
+      <rect x="162" y="80" width="18" height="100" fill="#FFCE00"/>
+      <rect x="198" y="80" width="18" height="100" fill="#FFCE00"/>
+      <rect x="234" y="80" width="18" height="100" fill="#FFCE00"/>
+      <rect x="270" y="80" width="18" height="100" fill="#FFCE00"/>
+      <rect x="306" y="80" width="18" height="100" fill="#FFCE00"/>
+      <rect x="8" y="60" width="342" height="22" fill="#FFCE00"/>
+      <rect x="30" y="38" width="298" height="24" fill="#FFCE00"/>
+      <rect x="140" y="16" width="78" height="24" fill="#FFCE00"/>
+      <polygon points="140,16 179,4 218,16" fill="#FFCE00"/>
+    </svg>
+    <div class="hero-content">
+      <div class="hero-kicker">Willkommen · A1 German · 4-week online course</div>
+      <h1>Speak German<br>in <em>4 weeks</em></h1>
+      <p class="hero-hook">Your first step into one of Europe's great languages. No experience needed — just you, curiosity, and a willingness to try something new.</p>
+      <button class="hero-cta" onclick="showPage('schedule')">View the schedule →</button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-val">4</span><span class="stat-lbl">Weeks</span></div>
+    <div class="stat-item"><span class="stat-val">8</span><span class="stat-lbl">Sessions</span></div>
+    <div class="stat-item"><span class="stat-val">60'</span><span class="stat-lbl">Per session</span></div>
+    <div class="stat-item"><span class="stat-val">A1</span><span class="stat-lbl">CEFR target</span></div>
+  </div>
+
+  <div class="home-body">
+    <div class="home-intro">
+      <h2>Everything you need to get started</h2>
+      <p>Explore the four sections of this course — from the weekly schedule and what you will learn, to how you will be assessed and the best free tools to practise with.</p>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card" onclick="showPage('schedule')">
+        <div class="ov-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="6" width="26" height="22" rx="2" stroke="#1c1c1c" stroke-width="1.8"/><rect x="3" y="6" width="26" height="7" rx="2" fill="#FFCE00"/><line x1="10" y1="3" x2="10" y2="9" stroke="#1c1c1c" stroke-width="1.8" stroke-linecap="round"/><line x1="22" y1="3" x2="22" y2="9" stroke="#1c1c1c" stroke-width="1.8" stroke-linecap="round"/><rect x="8" y="18" width="4" height="4" rx="1" fill="#cc0000"/><rect x="14" y="18" width="4" height="4" rx="1" fill="#cc0000"/><rect x="20" y="18" width="4" height="4" rx="1" fill="#FFCE00"/></svg></div>
+        <div class="ov-title">Schedule</div>
+        <div class="ov-sub">4 weeks, 8 sessions. See every topic, from greetings to modal verbs.</div>
+        <div class="ov-link">View schedule →</div>
+      </div>
+      <div class="overview-card" onclick="showPage('goals')">
+        <div class="ov-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="12" stroke="#1c1c1c" stroke-width="1.8"/><circle cx="16" cy="16" r="7" stroke="#cc0000" stroke-width="1.8"/><circle cx="16" cy="16" r="3" fill="#FFCE00"/><line x1="16" y1="1" x2="16" y2="5" stroke="#1c1c1c" stroke-width="1.8" stroke-linecap="round"/><line x1="16" y1="27" x2="16" y2="31" stroke="#1c1c1c" stroke-width="1.8" stroke-linecap="round"/><line x1="1" y1="16" x2="5" y2="16" stroke="#1c1c1c" stroke-width="1.8" stroke-linecap="round"/><line x1="27" y1="16" x2="31" y2="16" stroke="#1c1c1c" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="ov-title">Learning goals</div>
+        <div class="ov-sub">Vocabulary, grammar, speaking, listening — what you will be able to do by week 4.</div>
+        <div class="ov-link">See goals →</div>
+      </div>
+      <div class="overview-card" onclick="showPage('assessment')">
+        <div class="ov-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="3" width="20" height="26" rx="2" stroke="#1c1c1c" stroke-width="1.8"/><rect x="6" y="3" width="20" height="7" rx="2" fill="#1c1c1c"/><line x1="10" y1="16" x2="22" y2="16" stroke="#FFCE00" stroke-width="1.8" stroke-linecap="round"/><line x1="10" y1="20" x2="22" y2="20" stroke="#FFCE00" stroke-width="1.8" stroke-linecap="round"/><line x1="10" y1="24" x2="16" y2="24" stroke="#cc0000" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="ov-title">Assessment</div>
+        <div class="ov-sub">Three friendly check-ins along the way, ending with a full A1 mock test.</div>
+        <div class="ov-link">See assessment →</div>
+      </div>
+      <div class="overview-card" onclick="showPage('resources')">
+        <div class="ov-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="14" height="18" rx="1.5" fill="#FFCE00" stroke="#c9a200" stroke-width="1.2"/><rect x="10" y="5" width="14" height="18" rx="1.5" fill="#fff" stroke="#1c1c1c" stroke-width="1.8"/><rect x="14" y="4" width="14" height="18" rx="1.5" fill="#cc0000" stroke="#9a0000" stroke-width="1.2"/><line x1="17" y1="10" x2="25" y2="10" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/><line x1="17" y1="14" x2="25" y2="14" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/><line x1="17" y1="18" x2="22" y2="18" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+        <div class="ov-title">Resources</div>
+        <div class="ov-sub">Six free apps and websites to practise German every day between sessions.</div>
+        <div class="ov-link">Explore tools →</div>
+      </div>
+    </div>
+
+    <div class="home-quote">
+      <blockquote>„Der Anfang ist die Hälfte des Ganzen."</blockquote>
+      <cite>The beginning is half of everything.</cite>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ SCHEDULE ════════════════════════════ -->
+<div id="page-schedule" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-kicker">01 — Curriculum</div>
+      <h2>4-week schedule</h2>
+      <p>Two sessions per week, each 60 minutes. Every week builds on the last.</p>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#7a6000;border:1px solid #c9a200"></div> Vocabulary</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#9a0000"></div> Grammar</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#1c1c1c"></div> Speaking</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#5a4400"></div> Listening</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#cc0000"></div> Culture</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#888"></div> Review</div>
+    </div>
+    <div class="weeks-list">
+      <div class="week-row">
+        <div class="week-meta"><div class="week-num-label">Week</div><div class="week-num-big">01</div><div class="week-theme-label">First words</div></div>
+        <div class="session-cell"><div class="session-num">Session 01</div><div class="session-title">The German alphabet, sounds &amp; greetings</div><div class="tag-row"><span class="tag t-vocab">Vocabulary</span><span class="tag t-listen">Listening</span></div></div>
+        <div class="session-cell"><div class="session-num">Session 02</div><div class="session-title">Introducing yourself — name, age &amp; numbers 1–20</div><div class="tag-row"><span class="tag t-vocab">Vocabulary</span><span class="tag t-speak">Speaking</span><span class="tag t-gram">Grammar</span></div></div>
+      </div>
+      <div class="week-row">
+        <div class="week-meta"><div class="week-num-label">Week</div><div class="week-num-big">02</div><div class="week-theme-label">People &amp; places</div></div>
+        <div class="session-cell"><div class="session-num">Session 03</div><div class="session-title">Family members, pronouns &amp; verb sein / haben</div><div class="tag-row"><span class="tag t-vocab">Vocabulary</span><span class="tag t-gram">Grammar</span></div></div>
+        <div class="session-cell"><div class="session-num">Session 04</div><div class="session-title">Classroom, school objects &amp; telling the time</div><div class="tag-row"><span class="tag t-vocab">Vocabulary</span><span class="tag t-speak">Speaking</span></div></div>
+      </div>
+      <div class="week-row">
+        <div class="week-meta"><div class="week-num-label">Week</div><div class="week-num-big">03</div><div class="week-theme-label">Daily life</div></div>
+        <div class="session-cell"><div class="session-num">Session 05</div><div class="session-title">Food, drinks &amp; ordering at a café</div><div class="tag-row"><span class="tag t-vocab">Vocabulary</span><span class="tag t-speak">Speaking</span><span class="tag t-culture">Culture</span></div></div>
+        <div class="session-cell"><div class="session-num">Session 06</div><div class="session-title">Accusative case, articles &amp; basic negation</div><div class="tag-row"><span class="tag t-gram">Grammar</span><span class="tag t-listen">Listening</span></div></div>
+      </div>
+      <div class="week-row">
+        <div class="week-meta"><div class="week-num-label">Week</div><div class="week-num-big">04</div><div class="week-theme-label">Putting it all together</div></div>
+        <div class="session-cell"><div class="session-num">Session 07</div><div class="session-title">Hobbies, modal verbs &amp; talking about free time</div><div class="tag-row"><span class="tag t-vocab">Vocabulary</span><span class="tag t-gram">Grammar</span><span class="tag t-speak">Speaking</span></div></div>
+        <div class="session-cell"><div class="session-num">Session 08</div><div class="session-title">Full A1 review &amp; mock test with feedback</div><div class="tag-row"><span class="tag t-review">Review</span><span class="tag t-speak">Speaking</span><span class="tag t-listen">Listening</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ GOALS ════════════════════════════ -->
+<div id="page-goals" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-kicker">02 — Outcomes</div>
+      <h2>What you will learn</h2>
+      <p>By the end of week 4 you will be able to hold basic conversations, read short texts, and write simple sentences in German.</p>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="24" height="18" rx="2" stroke="#1c1c1c" stroke-width="1.6"/><rect x="2" y="5" width="24" height="6" rx="2" fill="#FFCE00"/><rect x="6" y="15" width="6" height="2" rx="1" fill="#cc0000"/><rect x="6" y="19" width="10" height="2" rx="1" fill="#1c1c1c" opacity="0.3"/><text x="5" y="12" font-family="Georgia,serif" font-size="5" font-weight="700" fill="#1c1c1c">Abc</text></svg></div>
+        <h3>Vocabulary (~300 words)</h3>
+        <ul>
+          <li>Numbers 1–100, dates &amp; times</li>
+          <li>Days, months, seasons</li>
+          <li>Family &amp; people</li>
+          <li>Food, drink &amp; shopping</li>
+          <li>Home &amp; classroom objects</li>
+          <li>Colors, clothes, weather</li>
+          <li>Common verbs (haben, sein, gehen…)</li>
+        </ul>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="2" width="16" height="22" rx="1.5" fill="#fff" stroke="#1c1c1c" stroke-width="1.6"/><line x1="8" y1="8" x2="18" y2="8" stroke="#FFCE00" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="12" x2="18" y2="12" stroke="#FFCE00" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="16" x2="14" y2="16" stroke="#FFCE00" stroke-width="2" stroke-linecap="round"/><path d="M18 18 L22 14 L25 17 L21 21 Z" fill="#cc0000" stroke="#9a0000" stroke-width="0.8"/><line x1="22" y1="14" x2="24" y2="12" stroke="#1c1c1c" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+        <h3>Grammar</h3>
+        <ul>
+          <li>German alphabet &amp; pronunciation</li>
+          <li>Personal pronouns (ich, du, er…)</li>
+          <li>Present tense — regular &amp; irregular</li>
+          <li>Nominative &amp; accusative case</li>
+          <li>Definite &amp; indefinite articles</li>
+          <li>Basic negation (nicht, kein)</li>
+          <li>Modal verbs (können, müssen, wollen)</li>
+        </ul>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="13" r="9" stroke="#1c1c1c" stroke-width="1.6"/><path d="M9 13 Q11 10 14 13 Q17 16 20 13" stroke="#cc0000" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M11 16 Q13 18 17 16" stroke="#cc0000" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M14 22 L12 26 M14 22 L16 26" stroke="#FFCE00" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="22" cy="8" rx="4" ry="3" fill="#FFCE00" stroke="#c9a200" stroke-width="1"/><path d="M20 8 L21.5 9.5 L24 7" stroke="#1c1c1c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Speaking &amp; listening</h3>
+        <ul>
+          <li>Introduce yourself &amp; others</li>
+          <li>Ask &amp; answer basic questions</li>
+          <li>Simple conversations (café, school)</li>
+          <li>Understand slow, clear German speech</li>
+          <li>Handle greetings &amp; farewells</li>
+          <li>Tell the time and date</li>
+        </ul>
+      </div>
+      <div class="goal-card">
+        <div class="goal-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="22" rx="2" fill="#fffbec" stroke="#1c1c1c" stroke-width="1.6"/><rect x="3" y="4" width="18" height="6" rx="2" fill="#1c1c1c"/><line x1="7" y1="15" x2="17" y2="15" stroke="#cc0000" stroke-width="1.6" stroke-linecap="round"/><line x1="7" y1="19" x2="17" y2="19" stroke="#cc0000" stroke-width="1.6" stroke-linecap="round"/><line x1="7" y1="23" x2="13" y2="23" stroke="#cc0000" stroke-width="1.6" stroke-linecap="round"/><path d="M18 18 L24 12 L27 15 L21 21 Z" fill="#FFCE00" stroke="#c9a200" stroke-width="0.8"/></svg></div>
+        <h3>Reading &amp; writing</h3>
+        <ul>
+          <li>Read short texts (postcards, forms)</li>
+          <li>Write simple sentences</li>
+          <li>Fill in basic forms</li>
+          <li>Understand short instructions</li>
+          <li>Write a short personal profile</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════ ASSESSMENT ════════════════════════════ -->
+<div id="page-assessment" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-kicker">03 — Progress</div>
+      <h2>How you will be assessed</h2>
+      <p>Three friendly check-ins over the four weeks — nothing to stress about, just a chance to see how far you have come.</p>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="assess-row">
+      <div class="assess-card">
+        <div class="assess-label">Check-in</div>
+        <div class="assess-when">Week 2 — start of session 3</div>
+        <div class="assess-desc">A short, friendly quiz on what you have covered so far — alphabet, greetings, numbers and basic pronouns. Nothing to stress about, it just helps us see how you are getting on.</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-label">Mid-course task</div>
+        <div class="assess-when">Week 3 — session 5</div>
+        <div class="assess-desc">You will introduce yourself and talk about your family in 5–6 sentences, in both speaking and writing. A great chance to see how much you already know!</div>
+      </div>
+      <div class="assess-card">
+        <div class="assess-label">Final mock test</div>
+        <div class="assess-when">Week 4 — session 8</div>
+        <div class="assess-desc">A full practice run of the Goethe-Institut A1 exam — reading, listening, writing, and speaking. You will receive personal written feedback to celebrate your progress.</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--muted);line-height:1.7;">The mock test follows the official <strong>Goethe-Institut Fit in Deutsch 1 (A1)</strong> format. You can explore free practice materials on the Goethe-Institut website whenever you feel ready.</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════ RESOURCES ════════════════════════════ -->
+<div id="page-resources" class="page">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-kicker">04 — Your toolkit</div>
+      <h2>Helpful resources</h2>
+      <p>Six free tools to practise German on your own, any day of the week.</p>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="resources-grid">
+      <a class="resource-card" href="https://www.duolingo.com/course/de/en/Learn-German" target="_blank" rel="noopener">
+        <div class="resource-type">App · Free · Daily practice</div>
+        <div class="resource-name">Duolingo</div>
+        <div class="resource-desc">Just 10 minutes a day on Duolingo's German course will make a real difference. It's playful, bite-sized, and you'll be surprised how quickly words start to stick.</div>
+        <div class="resource-cta">duolingo.com →</div>
+      </a>
+      <a class="resource-card" href="https://quizlet.com" target="_blank" rel="noopener">
+        <div class="resource-type">App · Free · Flashcards</div>
+        <div class="resource-name">Quizlet</div>
+        <div class="resource-desc">Quizlet lets you create and study flashcard sets for any topic. It's a great way to review German vocabulary at your own pace, on any device, whenever you have a spare moment.</div>
+        <div class="resource-cta">quizlet.com →</div>
+      </a>
+      <a class="resource-card" href="https://forvo.com/languages/de/" target="_blank" rel="noopener">
+        <div class="resource-type">Website · Free · Pronunciation</div>
+        <div class="resource-name">Forvo.com</div>
+        <div class="resource-desc">Ever unsure how to pronounce a German word? Forvo lets you hear it spoken by real native speakers. Bookmark it — you'll use it more than you expect.</div>
+        <div class="resource-cta">forvo.com →</div>
+      </a>
+      <a class="resource-card" href="https://www.dw.com/en/learn-german/nicos-weg/s-54150800" target="_blank" rel="noopener">
+        <div class="resource-type">Video course · Free · Listening</div>
+        <div class="resource-name">Deutsche Welle — Nicos Weg</div>
+        <div class="resource-desc">"Nico's Way" is a free A1 video series made exactly for beginners. Follow Nico's story, hear natural German, and pick up the language in a fun, visual way.</div>
+        <div class="resource-cta">dw.com →</div>
+      </a>
+      <a class="resource-card" href="https://www.goethe.de/en/spr/kup/prf/prf/sd1/ueb.html" target="_blank" rel="noopener">
+        <div class="resource-type">Official · Free · Exam prep</div>
+        <div class="resource-name">Goethe-Institut</div>
+        <div class="resource-desc">Download free sample papers for the A1 exam from the official Goethe-Institut website. Trying a practice test is one of the best ways to build confidence.</div>
+        <div class="resource-cta">goethe.de →</div>
+      </a>
+      <a class="resource-card" href="https://apps.ankiweb.net" target="_blank" rel="noopener">
+        <div class="resource-type">App · Free · Spaced repetition</div>
+        <div class="resource-name">Anki</div>
+        <div class="resource-desc">Anki is like a smart revision schedule for your vocabulary. It shows you words exactly when you are about to forget them — a small daily habit that pays off hugely.</div>
+        <div class="resource-cta">apps.ankiweb.net →</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Deutsch A1 · 4-Week Online Program · CEFR A1 target
+</footer>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  btns.forEach(b => { if (b.textContent.toLowerCase().trim() === id || (id === 'home' && b.textContent.trim() === 'Home')) b.classList.add('active'); });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// Set home active on load
+document.querySelector('.nav-btn').classList.add('active');
+</script>
+</body>
+</html>
